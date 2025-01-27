@@ -1,0 +1,40 @@
+ Employee.java
+class Employee {
+    private String name;
+    private double salary;
+
+    // Default constructor
+    public Employee() {
+        this.name = "Unknown";
+        this.salary = 0.0;
+    }
+
+    // Overloaded constructor
+    public Employee(String name) {
+        this.name = name;
+        this.salary = 30000.0; // Default salary
+    }
+
+    // Method to display employee details
+    public void DisplayEmployeeDetails() {
+        System.out.println("Employee Name: " + name);
+        System.out.println("Employee Salary: " + salary);
+    }
+}
+
+// Main class to test the Employee class
+public class Main {
+    public static void main(String[] args) {
+        // Creating an employee using the default constructor
+        Employee emp1 = new Employee();
+        System.out.println("Details of Employee 1:");
+        emp1.DisplayEmployeeDetails();
+
+        System.out.println(); // Just for better readability
+
+        // Creating an employee using the overloaded constructor
+        Employee emp2 = new Employee("John Doe");
+        System.out.println("Details of Employee 2:");
+        emp2.DisplayEmployeeDetails();
+    }
+}
