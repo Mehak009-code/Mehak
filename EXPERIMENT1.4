@@ -1,0 +1,71 @@
+AIM:Design a program for a basic banking system that calculates the average account balance by dividing the total balance by the number of account holders and
+verifies transaction IDs from an array. The program should demonstrate robust exception handling using multiple try-catch blocks to manage two specific scenarios:
+an ArithmeticException for division by zero when there are no account holders and an ArrayIndexOutOfBoundsException for accessing invalid indices in the transaction ID array.
+CODE:
+import java.util.Scanner;
+
+public class BankingSystem {
+    private double[] accountBalances;
+    private String[] transactionIDs;
+
+    // Constructor to initialize account balances and transaction IDs
+    public BankingSystem(double[] balances, String[] transactionIDs) {
+        this.accountBalances = balances;
+        this.transactionIDs = transactionIDs;
+    }
+
+    // Method to calculate the average account balance
+    public double calculateAverageBalance() throws ArithmeticException {
+        double totalBalance = 0.0;
+        for (double balance : accountBalances) {
+            totalBalance += balance;
+        }
+        if (accountBalances.length == 0) {
+            throw new ArithmeticException("No account holders available to calculate average balance.");
+        }
+        return totalBalance / accountBalances.length;
+    }
+
+    // Method to verify transaction ID
+    public void verifyTransactionID(int index) throws ArrayIndexOutOfBoundsException {
+        if (index < 0 || index >= transactionIDs.length) {
+            throw new ArrayIndexOutOfBoundsException("Invalid transaction ID index: " + index);
+        }
+        System.out.println("Transaction ID at index " + index + ": " + transactionIDs[index]);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Sample account balances and transaction IDs
+        double[] balances = {1000.50, 2500.75, 300.00, 1500.25}; // Example balances
+        String[] transactionIDs = {"TXN001", "TXN002", "TXN003", "TXN004"}; // Example transaction IDs
+
+        BankingSystem bankingSystem = new BankingSystem(balances, transactionIDs);
+
+        // Calculate average balance with exception handling
+        try {
+            double averageBalance = bankingSystem.calculateAverageBalance();
+            System.out.println("Average Account Balance: " + averageBalance);
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        // Verify transaction ID with exception handling
+        System.out.print("Enter the index of the transaction ID to verify (0 to " + (transactionIDs.length - 1) + "): ");
+        int index = scanner.nextInt();
+
+        try {
+            bankingSystem.verifyTransactionID(index);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
+    }
+}
+
+//OUTPUT :
+Average Account Balance: 825.125
+Enter the index of the transaction ID to verify (0 to 3): 2
+Transaction ID at index 2
