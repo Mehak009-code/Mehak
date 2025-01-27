@@ -1,0 +1,30 @@
+public class ArithmeticOperations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input two strings representing numbers
+        System.out.print("Enter the first number: ");
+        String firstInput = scanner.nextLine();
+        System.out.print("Enter the second number: ");
+        String secondInput = scanner.nextLine();
+
+        // Convert strings to wrapper classes
+        Integer firstNumber = Integer.valueOf(firstInput);
+        Integer secondNumber = Integer.valueOf(secondInput);
+
+        // Perform arithmetic operations
+        int addition = firstNumber + secondNumber;
+        int subtraction = firstNumber - secondNumber;
+        int multiplication = firstNumber * secondNumber;
+        double division = secondNumber != 0 ? (double) firstNumber / secondNumber : Double.NaN; // Handle division by zero
+
+        // Display results
+        System.out.println("Addition: " + addition);
+        System.out.println("Subtraction: " + subtraction);
+        System.out.println("Multiplication: " + multiplication);
+        System.out.println("Division: " + (secondNumber != 0 ? division : "undefined (division by zero)"));
+
+        // Close the scanner
+        scanner.close();
+    }
+}
